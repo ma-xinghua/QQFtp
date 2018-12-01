@@ -60,5 +60,7 @@ def init_user_config():
 			
 def ftp():   
      init_user_config()
+     print ("QQFTP server has been launched!")
      init_ftp_server()
+     
     

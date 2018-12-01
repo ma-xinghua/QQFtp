@@ -7,8 +7,9 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from get_ip import *
 
-class Ui_Dialog(object):
+class Ui_Dialog_server(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
         Dialog.resize(443, 484)
@@ -51,6 +52,7 @@ class Ui_Dialog(object):
         self.formLayout.setWidget(17, QtWidgets.QFormLayout.FieldRole, self.label_4)
         self.textBrowser = QtWidgets.QTextBrowser(Dialog)
         self.textBrowser.setObjectName("textBrowser")
+        self.textBrowser.append(get_host_ip())
         self.formLayout.setWidget(18, QtWidgets.QFormLayout.FieldRole, self.textBrowser)
         self.label_5 = QtWidgets.QLabel(Dialog)
         self.label_5.setObjectName("label_5")
@@ -66,7 +68,7 @@ class Ui_Dialog(object):
         self.formLayout.setWidget(7, QtWidgets.QFormLayout.FieldRole, self.label)
 
         self.retranslateUi(Dialog)
-        self.toolButton.clicked.connect(Dialog.button1)
+        self.toolButton.clicked.connect(Dialog.newuser)
         self.toolButton_4.clicked.connect(Dialog.button2)
         self.toolButton_3.clicked.connect(Dialog.button3)
         self.toolButton_2.clicked.connect(Dialog.start)

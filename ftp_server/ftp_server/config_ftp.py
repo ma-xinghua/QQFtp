@@ -21,7 +21,7 @@ enable_logging = True
 #日志记录文件名称
 logging_name = r"pyftp.log"
 #公网ip
-masquerade_address = "192.168.1.102"
+masquerade_address = "192.168.3.8"
 #欢迎标题
 welcome_banner = r"Welcome to zhunn private ftp."
 #默认匿名用户路径

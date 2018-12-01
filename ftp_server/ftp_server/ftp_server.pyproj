@@ -23,7 +23,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="config_ftp.py" />
+    <Compile Include="create.py" />
     <Compile Include="ftp_server.py" />
+    <Compile Include="get_ip.py" />
     <Compile Include="module1.py" />
     <Compile Include="server.py" />
     <Compile Include="test.py">
