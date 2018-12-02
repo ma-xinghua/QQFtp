@@ -68,17 +68,24 @@ class changewindow(QtWidgets.QWidget, Ui_Dialog_change):
         self.userPasscode=self.lineEdit_2.text()
         self.data = ''
         self.array=[]
+        self.ctr=1
         file = open('userinfo.ini','r',encoding = 'UTF-8')
         self.information=file.readlines()
         file.close()
-        file_new=open('userinfo.ini','w',encoding='UTF-8')
         for line in self.information:
                 self.array= line.split()
                 if((self.userName in self.array) and (self.userPasscode in self.array)):
+                    self.ctr=0
                     if(self.checkBox.isChecked()):
                         self.array[0]=self.lineEdit_3.text()
+                        if(self.array[0]==""):
+                            warning3=QMessageBox.warning(self,"警告","你的用户名不能为空")
+                            return
                     if(self.checkBox_2.isChecked()):
                         self.array[1]=self.lineEdit_4.text()
+                        if(self.array[1]==""):
+                            warning4=QMessageBox.warning(self,"警告","你的密码不能为空")
+                            return
                     if(self.checkBox_3.isChecked()):
                         self.authority=""
                         if (self.checkBox_5.isChecked()):
@@ -97,17 +104,28 @@ class changewindow(QtWidgets.QWidget, Ui_Dialog_change):
                             self.authority=self.authority+"f"
                         if (self.checkBox_12.isChecked()):
                             self.authority=self.authority+"w"
+                        if (self.authority==""):
+                            warning1=QMessageBox.warning(self,"警告","你必须选择一个权限")
+                            return
                         self.array[2]=self.authority
                     if(self.checkBox_4.isChecked()):
                         self.array[3]=self.lineEdit_5.text()
-                    #print(self.array[0])
-                    #print(self.array[1])
-                    #print(self.array[2])
-                    #print(self.array[3])
-                    self.data=self.array[0]+" "+self.array[1]+" "+self.array[2]+" "+self.array[3]+"\n"
-                    line=self.data
-                file_new.write(line)
+                        if(self.array[3]==""):
+                            warning5=QMessageBox.warning(self,"警告","你的路径不能为空")
+                            return
+                    self.data="\n"+self.array[0]+" "+self.array[1]+" "+self.array[2]+" "+self.array[3]
+                    self.information.remove(line)
+                    self.information.append(self.data)
+        if(self.ctr):
+            warning2=QMessageBox.warning(self,"警告","用户名或密码错误")
+            return
+        if not os.path.exists(self.array[3]):
+            os.makedirs(self.array[3]) #如果不存在这个文件夹，就创建一个
+        file_new=open('userinfo.ini','w',encoding='UTF-8')
+        for line in self.information:
+            file_new.write(line)
         file_new.close()
+        information1=QMessageBox.information(self,"提示","用户信息已经修改")
 
 class mywindow(QtWidgets.QWidget, Ui_Dialog_server):
 
